@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Repozytorium.IRepo;
 
 namespace Repozytorium.Models
 {
     // You can add profile data for the user by adding more properties to your Uzytkownik class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
 
 
-    public class OGLContext : IdentityDbContext
+    public class OGLContext : IdentityDbContext, IOglContext
     {
         public OGLContext()
             : base("DefaultConnection")

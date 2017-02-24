@@ -22,3 +22,18 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/*podświetlenie pierwszego wiersza z nagłówkiem*/
+tr:first-child{
+    background-color:#efefef;
+}
+
+/*podświetlenie wiersza po najechaniu*/
+tr:hover td{
+    background-color:#efefef;
+}
+
+/*odstępy między przyciskami*/
+.btn {
+    margin:2px;
+}

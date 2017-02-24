@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<Repozytorium.Models.Ogloszenie>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Tytul = "Lista ogłoszeń - metatytuł do 60znaków";
+    ViewBag.Opis = "Lista ogłoszeń";
+    ViewBag.SlowaKluczowe = "Lista, ogłoszeń, słowa, aplikacja";
 }
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Uzykownik.UserName)
+                @Html.DisplayNameFor(model => model.UzytkownikId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tytul)
@@ -41,7 +43,7 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Uzykownik.UserName)
+                @Html.DisplayFor(modelItem => item.UzytkownikId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tytul)
