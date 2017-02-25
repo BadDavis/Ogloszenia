@@ -10,6 +10,7 @@ using Repozytorium.Models;
 using System.Diagnostics;
 using Repozytorium.Repo;
 using Repozytorium.IRepo;
+using Microsoft.AspNet.Identity;
 
 namespace Ogloszenia.Controllers
 {
@@ -48,28 +49,38 @@ namespace Ogloszenia.Controllers
         }
 
         // GET: Ogloszenie/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
 
-        //    // POST: Ogloszenie/Create
-        //    // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //    // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //    [HttpPost]
-        //    [ValidateAntiForgeryToken]
-        //    public ActionResult Create([Bind(Include = "Id,Tytul,Tresc,DataDodania,DataZakonczenia,Cena,Stan,UzytkownikId")] Ogloszenie ogloszenie)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            db.Ogloszenia.Add(ogloszenie);
-        //            db.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
+        // POST: Ogloszenie/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Tytul,Tresc,Cena,Stan,DataZakonczenia")] Ogloszenie ogloszenie)
+        {
+            if (ModelState.IsValid)
+            {
 
-        //        ViewBag.UzytkownikId = new SelectList(db.Users, "Id", "Email", ogloszenie.UzytkownikId);
-        //        return View(ogloszenie);
-        //    }
+                ogloszenie.UzytkownikId = User.Identity.GetUserId();
+                ogloszenie.DataDodania = DateTime.Now;
+                try
+                {
+                    _repo.Dodaj(ogloszenie);
+                    _repo.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    return View(ogloszenie);
+                }
+            }
+            return View(ogloszenie);
+        }
 
         //    // GET: Ogloszenie/Edit/5
         //    public ActionResult Edit(int? id)
