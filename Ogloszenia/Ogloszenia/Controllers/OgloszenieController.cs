@@ -160,6 +160,13 @@ namespace Ogloszenia.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Partial()
+        {
+            var ogloszenia = _repo.PobierzOgloszenia();
+            return PartialView("Index", ogloszenia);
+        }
+
         //    protected override void Dispose(bool disposing)
         //    {
         //        if (disposing)

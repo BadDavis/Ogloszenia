@@ -40,6 +40,13 @@ namespace Repozytorium.Migrations
                 role.Name = "Admin";
                 roleManager.Create(role);
             }
+
+            if (!roleManager.RoleExists("Pracownik"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Pracownik";
+                roleManager.Create(role);
+            }
         }
 
         private void SeedUsers(OGLContext context)
@@ -55,6 +62,16 @@ namespace Repozytorium.Migrations
 
                 if (adminresult.Succeeded)
                     manager.AddToRole(user.Id, "Admin");
+            }
+
+            if (!context.Users.Any(u=>u.UserName == "Marek"))
+            {
+                var user = new Uzytkownik { UserName = "marek@gmail.com" };
+                var adminResult = manager.Create(user, "1234Abc,");
+                if (adminResult.Succeeded)
+                {
+                    manager.AddToRole(user.Id, "Pracownik");
+                }
             }
         }
 
