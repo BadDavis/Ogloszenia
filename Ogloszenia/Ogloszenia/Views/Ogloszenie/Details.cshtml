@@ -1,35 +1,21 @@
 ﻿@model Repozytorium.Models.Ogloszenie
 
 @{
-    Layout = null;
+    ViewBag.Tytul = "Szczegóły ogłoszenia: " + Model.Tytul;
+    ViewBag.Opis = "Szczeóły ogłoszenia: " + Model.Tytul;
+    ViewBag.SlowaKluczowe = "Ogloszenie, " + Model.Id + " ,szczegóły.";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+<h2>Szczegóły ogłoszenia: @Model.Id</h2>
+
     <div>
         <h4>Ogloszenie</h4>
         <hr />
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Uzykownik.Email)
-            </dt>
-    
+            <dt>Id Autora</dt>
             <dd>
-                @Html.DisplayFor(model => model.Uzykownik.Email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Tytul)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Tytul)
+                @Html.DisplayFor(model => model.UzytkownikId)
             </dd>
     
             <dt>
@@ -38,6 +24,14 @@
     
             <dd>
                 @Html.DisplayFor(model => model.Tresc)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Tytul)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Tytul)
             </dd>
     
             <dt>
@@ -75,8 +69,7 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Edytuj", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" }) |
+        @Html.ActionLink("Wróć", "Index", null, new { @class = "btn btn-warning" })
     </p>
-</body>
-</html>
+
