@@ -61,5 +61,14 @@ namespace Repozytorium.Repo
         {
             _db.Entry(ogloszenie).State = EntityState.Modified;
         }
+
+        public IQueryable<Ogloszenie> PobierzStrone(int? page = 1, int? pageSize = 10)
+        {
+            var ogloszenie = _db.Ogloszenia
+                .OrderByDescending(o => o.DataDodania)
+                .Skip((page.Value - 1) * pageSize.Value)
+                .Take(pageSize.Value);
+            return ogloszenie;
+        }
     }
 }

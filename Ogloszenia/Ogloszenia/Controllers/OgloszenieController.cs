@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Repozytorium.Repo;
 using Repozytorium.IRepo;
 using Microsoft.AspNet.Identity;
+using PagedList;
 
 namespace Ogloszenia.Controllers
 {
@@ -24,12 +25,75 @@ namespace Ogloszenia.Controllers
         }
 
         // GET: Ogloszenie
-        public ActionResult Index()
+        public ActionResult Index(int? page, string sortOrder)
         {
+            int currentPage = page ?? 1;
+            int naStronie = 5;
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.IdSort = String.IsNullOrEmpty(sortOrder) ? "IdAsc" : "";
+            ViewBag.DataDodaniaSort = sortOrder == "DataDodania" ? "DataDodaniaAsc" : "DataDodania";
+            ViewBag.DataZakonczeniaSort = sortOrder == "DataZakonczenia" ? "DataZakonczeniaAsc" : "DataZakonczenia";
+            ViewBag.TytulSort = sortOrder == "TytulAsc" ? "Tytul" : "TytulAsc";
+            ViewBag.CenaSort = sortOrder == "CenaAsc" ? "Cena" : "CenaAsc";
 
             // var ogloszenia = db.Ogloszenia.Include(o => o.Uzykownik); // wyłącza LazyLoading
-            var ogloszenia = _repo.PobierzOgloszenia(); 
-            return View(ogloszenia);
+            var ogloszenia = _repo.PobierzOgloszenia();
+
+            switch (sortOrder)
+            {
+                case "DataDodania":
+                    ogloszenia = ogloszenia.OrderByDescending(s => s.DataDodania);
+                    break;
+
+                case "DataDodaniaAsc":
+                    ogloszenia = ogloszenia.OrderBy(s => s.DataDodania);
+                    break;
+
+                case "Tytul":
+                    ogloszenia = ogloszenia.OrderByDescending(s => s.Tytul);
+                    break;
+
+                case "TytulAsc":
+                    ogloszenia = ogloszenia.OrderBy(s => s.Tytul);
+                    break;
+
+                case "DataZakonczenia":
+                    ogloszenia = ogloszenia.OrderByDescending(s => s.DataZakonczenia);
+                    break;
+
+                case "DataZakonczeniaAsc":
+                    ogloszenia = ogloszenia.OrderBy(s => s.DataZakonczenia);
+                    break;
+
+                case "Cena":
+                    ogloszenia = ogloszenia.OrderByDescending(s => s.Cena);
+                    break;
+
+                case "CenaAsc":
+                    ogloszenia = ogloszenia.OrderBy(s => s.Cena);
+                    break;
+
+                case "IdAsc":
+                    ogloszenia = ogloszenia.OrderBy(s => s.Id);
+                    break;
+
+                default: //by Id
+                    ogloszenia = ogloszenia.OrderByDescending(s => s.Id);
+                    break;
+            }
+            return View(ogloszenia.ToPagedList<Ogloszenie>(currentPage, naStronie));
+        }
+
+        public ActionResult MojeOgloszenie(int? page)
+        {
+            int currentPage = page ?? 1;
+            int naStronie = 5;
+            string userID = User.Identity.GetUserId();
+            var ogloszenia = _repo.PobierzOgloszenia();
+            ogloszenia = ogloszenia.OrderByDescending(d => d.DataDodania)
+                .Where(o => o.UzytkownikId == userID);
+            return View(ogloszenia.ToPagedList<Ogloszenie>(currentPage, naStronie));
         }
 
 
@@ -73,7 +137,7 @@ namespace Ogloszenia.Controllers
                 {
                     _repo.Dodaj(ogloszenie);
                     _repo.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("MojeOgloszenie ");
                 }
                 catch
                 {
@@ -94,6 +158,10 @@ namespace Ogloszenia.Controllers
             if (ogloszenie == null)
             {
                 return HttpNotFound();
+            }
+            else if (ogloszenie.UzytkownikId != User.Identity.GetUserId() && !(User.IsInRole("Admin") || User.IsInRole("Pracownik")))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             return View(ogloszenie);
         }
@@ -125,6 +193,7 @@ namespace Ogloszenia.Controllers
         }
 
         // GET: Ogloszenie/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id, bool? blad)
         {
             if (id == null)
@@ -135,6 +204,10 @@ namespace Ogloszenia.Controllers
             if (ogloszenie == null)
             {
                 return HttpNotFound();
+            }
+            else if (ogloszenie.UzytkownikId != User.Identity.GetUserId() && !User.IsInRole("Admin"))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             if (blad != null)
             {
@@ -161,10 +234,13 @@ namespace Ogloszenia.Controllers
         }
 
 
-        public ActionResult Partial()
+        public ActionResult Partial(int? page)
         {
+            int currentPage = page ?? 1;
+            int naStronie = 5;
             var ogloszenia = _repo.PobierzOgloszenia();
-            return PartialView("Index", ogloszenia);
+            ogloszenia = ogloszenia.OrderByDescending(d => d.DataDodania);
+            return PartialView("Index", ogloszenia.ToPagedList<Ogloszenie>(currentPage, naStronie));
         }
 
         //    protected override void Dispose(bool disposing)
