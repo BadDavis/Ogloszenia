@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Repozytorium.Models.Kategoria>
+
+@{
+    ViewBag.Tytul = "Lista kategorii";
+    ViewBag.Opis = "Lista kategorii";
+    ViewBag.SlowaKluczowe = "Lista, kategoria, słowo, aplikacja";
+}
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetaTytul)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Metaopis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetaSlowa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tresc)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Nazwa, "PokazOgloszenia" , new { id = item.Id})
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetaTytul)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Metaopis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetaSlowa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tresc)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    
+    </table>

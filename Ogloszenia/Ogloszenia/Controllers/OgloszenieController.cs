@@ -85,6 +85,7 @@ namespace Ogloszenia.Controllers
             return View(ogloszenia.ToPagedList<Ogloszenie>(currentPage, naStronie));
         }
 
+        [OutputCache(Duration =100)]
         public ActionResult MojeOgloszenie(int? page)
         {
             int currentPage = page ?? 1;
