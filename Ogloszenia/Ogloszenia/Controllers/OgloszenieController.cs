@@ -138,7 +138,7 @@ namespace Ogloszenia.Controllers
                 {
                     _repo.Dodaj(ogloszenie);
                     _repo.SaveChanges();
-                    return RedirectToAction("MojeOgloszenie ");
+                    return RedirectToAction("MojeOgloszenie");
                 }
                 catch
                 {

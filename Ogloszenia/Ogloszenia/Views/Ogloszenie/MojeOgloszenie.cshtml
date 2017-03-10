@@ -79,4 +79,8 @@
     <br />
     Strona @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) z @Model.PageCount
     @Html.PagedListPager(Model, page => Url.Action("MojeOgloszenie", new { page}))
+    <div>
+        @Html.ActionLink("Wróć do Ogłoszeń", "Index", null, new { @class = "btn btn-warning" })
+    </div>
+
 </div>
