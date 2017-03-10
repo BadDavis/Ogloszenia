@@ -1,0 +1,8 @@
+﻿@using Repozytorium
+@using Ogloszenia.Helpers
+
+@{ 
+    var items = typeof(StanProduktu).GetItems();
+}
+
+@Html.DropDownList("", items)

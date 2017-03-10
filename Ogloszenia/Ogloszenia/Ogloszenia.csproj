@@ -238,6 +238,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Models\Views\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -320,6 +321,7 @@
     <Content Include="Views\Ogloszenie\MojeOgloszenie.cshtml" />
     <Content Include="Views\Kategoria\Index.cshtml" />
     <Content Include="Views\Kategoria\PokazOgloszenia.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\StanProduktu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

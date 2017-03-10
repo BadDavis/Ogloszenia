@@ -142,7 +142,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRepo\IKategoriaRepo.cs" />
@@ -152,9 +154,13 @@
     <Compile Include="Migrations\201702241511322_startowa.Designer.cs">
       <DependentUpon>201702241511322_startowa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201702241635457_test.cs" />
-    <Compile Include="Migrations\201702241635457_test.Designer.cs">
-      <DependentUpon>201702241635457_test.cs</DependentUpon>
+    <Compile Include="Migrations\201703101205532_state.cs" />
+    <Compile Include="Migrations\201703101205532_state.Designer.cs">
+      <DependentUpon>201703101205532_state.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703101220385_stan2.cs" />
+    <Compile Include="Migrations\201703101220385_stan2.Designer.cs">
+      <DependentUpon>201703101220385_stan2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Kategoria.cs" />
@@ -164,6 +170,7 @@
     <Compile Include="Models\Uzytkownik.cs" />
     <Compile Include="Models\Views\AccountViewModels.cs" />
     <Compile Include="Models\Views\OgloszeniaZkategoriiViewModels.cs" />
+    <Compile Include="Models\StanProduktu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\KategoriaRepo.cs" />
     <Compile Include="Repo\OgloszenieRepo.cs" />
@@ -172,8 +179,11 @@
     <EmbeddedResource Include="Migrations\201702241511322_startowa.resx">
       <DependentUpon>201702241511322_startowa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702241635457_test.resx">
-      <DependentUpon>201702241635457_test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703101205532_state.resx">
+      <DependentUpon>201703101205532_state.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703101220385_stan2.resx">
+      <DependentUpon>201703101220385_stan2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

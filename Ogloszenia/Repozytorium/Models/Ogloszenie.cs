@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Repozytorium;
 
 namespace Repozytorium.Models
 {
@@ -37,10 +38,9 @@ namespace Repozytorium.Models
         [DataType(DataType.Currency)]
         public float Cena { get; set; }
 
-        [MaxLength(15)]
-        public string Stan { get; set; }
-
         public string UzytkownikId { get; set; }
+
+        public StanProduktu Stan{ get; set; }
 
         public virtual ICollection<Ogloszenie_Kategoria> Ogloszenie_Kategoria { get; set; }
         public virtual Uzytkownik Uzykownik { get; set; }

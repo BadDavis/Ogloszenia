@@ -3,16 +3,16 @@ namespace Repozytorium.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class test : DbMigration
+    public partial class stan2 : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Ogloszenie", "DataZakonczenia", c => c.DateTime(nullable: false));
+            AddColumn("dbo.Ogloszenie", "Stan", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Ogloszenie", "DataZakonczenia");
+            DropColumn("dbo.Ogloszenie", "Stan");
         }
     }
 }

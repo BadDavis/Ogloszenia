@@ -78,7 +78,7 @@ namespace Repozytorium.Migrations
         private void SeedOgloszenia(OGLContext context)
         {
 
-            var idUzytkownika = context.Set<Uzytkownik>().Where(u => u.UserName == "Admin").FirstOrDefault().Id;
+            var idUzytkownika = context.Set<Uzytkownik>().Where(u => u.UserName == "Admin@o2.pl").FirstOrDefault().Id;
             for (int i = 1; i <= 10; i++)
             {
                 var ogl = new Ogloszenie()
@@ -90,7 +90,7 @@ namespace Repozytorium.Migrations
                     DataDodania = DateTime.Now.AddDays(-i),
                     DataZakonczenia = DateTime.Now.AddDays(-i+14),
                     Cena = i*120,
-                    Stan = "U¿ywane",
+                    
                 };
                 context.Set<Ogloszenie>().AddOrUpdate(ogl);
             }
