@@ -190,7 +190,8 @@ namespace Ogloszenia.Controllers
                 }
             }
             ViewBag.Blad = false;
-            return View(ogloszenie);
+            //return View(ogloszenie);
+            return RedirectToAction("Details", ogloszenie);
         }
 
         // GET: Ogloszenie/Delete/5
