@@ -19,10 +19,12 @@ namespace Repozytorium.Models
 
         [Display(Name ="Tytuł ogłoszenia: ")]
         [MaxLength(72)]
+        [Required]
         public string Tytul { get; set; }
 
         [Display(Name = "Treść ogłoszenia: ")]
         [MaxLength(2500)]
+        [Required]
         public string Tresc { get; set; }
 
         [Display(Name = "Data dodania: ")]

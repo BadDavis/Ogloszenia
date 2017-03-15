@@ -16,9 +16,12 @@
 }
     <table class="table">
         <tr>
-            <th>
-                @Html.ActionLink("Id użytkownika", "Index", new {sortOrder = ViewBag.IdSort})
-            </th>
+            @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Pracownik")))
+            {
+                <th>
+                    @Html.ActionLink("Id użytkownika", "Index", new { sortOrder = ViewBag.IdSort })
+                </th>
+            }
             <th>
                 @Html.ActionLink("Tytuł", "Index", new { sortOrder = ViewBag.TytulSort })
             </th>
@@ -39,9 +42,12 @@
     
     @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UzytkownikId)
-            </td>
+            @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Pracownik")))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.UzytkownikId)
+                </td>
+            }
             <td>
                 @Html.DisplayFor(modelItem => item.Tytul)
             </td>

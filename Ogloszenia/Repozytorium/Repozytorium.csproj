@@ -162,6 +162,10 @@
     <Compile Include="Migrations\201703101220385_stan2.Designer.cs">
       <DependentUpon>201703101220385_stan2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703151749556_title.cs" />
+    <Compile Include="Migrations\201703151749556_title.Designer.cs">
+      <DependentUpon>201703151749556_title.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Kategoria.cs" />
     <Compile Include="Models\OGLContext.cs" />
@@ -184,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703101220385_stan2.resx">
       <DependentUpon>201703101220385_stan2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703151749556_title.resx">
+      <DependentUpon>201703151749556_title.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
