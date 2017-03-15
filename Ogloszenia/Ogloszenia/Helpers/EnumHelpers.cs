@@ -12,7 +12,7 @@ namespace Ogloszenia.Helpers
         {
             if (!typeof(Enum).IsAssignableFrom(enumType))
             {
-                throw new ArgumentException("Type must be an enum");
+                throw new ArgumentException("To musi być typ wyliczeniowy 'enum'");
             }
 
             var names = Enum.GetNames(enumType);

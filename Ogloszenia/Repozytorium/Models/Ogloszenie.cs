@@ -35,6 +35,7 @@ namespace Repozytorium.Models
         [Display(Name = "Data zakończenia: ")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DueDate]
         public System.DateTime DataZakonczenia { get; set; }
 
         [DataType(DataType.Currency)]
