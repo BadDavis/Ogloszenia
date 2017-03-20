@@ -14,10 +14,14 @@
         <h4>Ogloszenie</h4>
         <hr />
         <dl class="dl-horizontal">
-            <dt>Id Autora</dt>
-            <dd>
-                @Html.DisplayFor(model => model.UzytkownikId)
-            </dd>
+            
+            @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Pracownik")))
+            {
+                <dt>Id Autora</dt>
+                <td>
+                    @Html.DisplayFor(model => model.UzytkownikId)
+                </td>
+            }
     
             <dt>
                 @Html.DisplayNameFor(model => model.Tresc)

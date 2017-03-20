@@ -166,6 +166,10 @@
     <Compile Include="Migrations\201703151749556_title.Designer.cs">
       <DependentUpon>201703151749556_title.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703201336518_multiline_tresc.cs" />
+    <Compile Include="Migrations\201703201336518_multiline_tresc.Designer.cs">
+      <DependentUpon>201703201336518_multiline_tresc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Kategoria.cs" />
     <Compile Include="Models\OGLContext.cs" />
@@ -191,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703151749556_title.resx">
       <DependentUpon>201703151749556_title.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703201336518_multiline_tresc.resx">
+      <DependentUpon>201703201336518_multiline_tresc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

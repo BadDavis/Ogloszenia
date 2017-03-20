@@ -17,9 +17,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.ActionLink("Id użytkownika", "Index", new { sortOrder = ViewBag.IdSort })
-        </th>
-        <th>
             @Html.ActionLink("Tytuł", "Index", new { sortOrder = ViewBag.TytulSort })
         </th>
         <th>
@@ -40,9 +37,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UzytkownikId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tytul)
             </td>

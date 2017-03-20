@@ -15,6 +15,7 @@ using PagedList;
 
 namespace Ogloszenia.Controllers
 {
+    [Authorize]
     public class OgloszenieController : Controller
     {
         private readonly IOgloszenieRepo _repo;
@@ -25,6 +26,7 @@ namespace Ogloszenia.Controllers
         }
 
         // GET: Ogloszenie
+        [AllowAnonymous]
         public ActionResult Index(int? page, string sortOrder)
         {
             int currentPage = page ?? 1;
@@ -85,7 +87,7 @@ namespace Ogloszenia.Controllers
             return View(ogloszenia.ToPagedList<Ogloszenie>(currentPage, naStronie));
         }
 
-        [OutputCache(Duration =100)]
+        [OutputCache(Duration = 1)]
         public ActionResult MojeOgloszenie(int? page)
         {
             int currentPage = page ?? 1;
@@ -99,6 +101,7 @@ namespace Ogloszenia.Controllers
 
 
         // GET: Ogloszenie/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -114,7 +117,7 @@ namespace Ogloszenia.Controllers
         }
 
         // GET: Ogloszenie/Create
-        [Authorize]
+        //[Authorize]
         public ActionResult Create()
         {
             return View();
@@ -123,7 +126,7 @@ namespace Ogloszenia.Controllers
         // POST: Ogloszenie/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+       // [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Tytul,Tresc,Cena,Stan")] Ogloszenie ogloszenie)
@@ -170,10 +173,10 @@ namespace Ogloszenia.Controllers
         // POST: Ogloszenie/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Tytul,Tresc,DataDodania,DataZakonczenia,Cena,Stan,UzytkownikId")] Ogloszenie ogloszenie)
+        public ActionResult Edit([Bind(Include = "Id,Tytul,Tresc,Cena,Stan,UzytkownikId")] Ogloszenie ogloszenie)
         {
             if (ModelState.IsValid)
             {
@@ -195,7 +198,7 @@ namespace Ogloszenia.Controllers
         }
 
         // GET: Ogloszenie/Delete/5
-        [Authorize]
+        //[Authorize]
         public ActionResult Delete(int? id, bool? blad)
         {
             if (id == null)

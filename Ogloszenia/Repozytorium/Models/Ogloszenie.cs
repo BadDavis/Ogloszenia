@@ -25,6 +25,7 @@ namespace Repozytorium.Models
         [Display(Name = "Treść ogłoszenia: ")]
         [MaxLength(2500)]
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Tresc { get; set; }
 
         [Display(Name = "Data dodania: ")]
