@@ -31,6 +31,8 @@ namespace Ogloszenia.Controllers
         {
             int currentPage = page ?? 1;
             int naStronie = 5;
+            
+
 
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IdSort = String.IsNullOrEmpty(sortOrder) ? "IdAsc" : "";
@@ -90,6 +92,7 @@ namespace Ogloszenia.Controllers
         [OutputCache(Duration = 1)]
         public ActionResult MojeOgloszenie(int? page)
         {
+            ViewBag.userName = User.Identity.Name;
             int currentPage = page ?? 1;
             int naStronie = 5;
             string userID = User.Identity.GetUserId();
@@ -113,6 +116,7 @@ namespace Ogloszenia.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.userName = User.Identity.GetUserName();
             return View(ogloszenie);
         }
 
@@ -176,7 +180,7 @@ namespace Ogloszenia.Controllers
         //[Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Tytul,Tresc,Cena,Stan,UzytkownikId")] Ogloszenie ogloszenie)
+        public ActionResult Edit([Bind(Include = "Id,Tytul,Tresc,Cena,Stan")] Ogloszenie ogloszenie)
         {
             if (ModelState.IsValid)
             {

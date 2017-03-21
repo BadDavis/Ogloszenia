@@ -7,7 +7,7 @@
     ViewBag.SlowaKluczowe = "Lista, ogłoszeń, słowa, aplikacja";
 }
 
-<h2>Moje ogłoszenia</h2>
+<h2>Ogłoszenia użytkownika @ViewBag.userName</h2>
 @if (User.Identity.IsAuthenticated)
 {
     <p>

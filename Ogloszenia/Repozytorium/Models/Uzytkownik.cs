@@ -20,8 +20,10 @@ namespace Repozytorium.Models
 
         //klucz podst dziedziczony po klasie identityUser
 
+        [StringLength(10)]
         public string Imie { get; set; }
 
+        [StringLength(35)]
         public string Nazwisko { get; set; }
 
 

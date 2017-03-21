@@ -64,6 +64,12 @@ namespace Repozytorium.Models
 
     public class RegisterViewModel
     {
+        [StringLength(10)]
+        public string Imie { get; set; }
+
+        [StringLength(35)]
+        public string Nazwisko { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

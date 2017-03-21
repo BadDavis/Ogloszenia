@@ -1,4 +1,5 @@
-﻿using Repozytorium.IRepo;
+﻿using Microsoft.AspNet.Identity;
+using Repozytorium.IRepo;
 using Repozytorium.Models;
 using System;
 using System.Collections.Generic;
